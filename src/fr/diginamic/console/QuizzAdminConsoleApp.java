@@ -1,6 +1,5 @@
 package fr.diginamic.console;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -20,42 +19,17 @@ public class QuizzAdminConsoleApp {
 		
 		switch (choix) {
 			case 1:
-				int i = 1;
-				for (Question question : lq) {
-					System.out.println(i + ") " + question.getIntitule());
-					i++;
-				}
+				listerQuestions();
 				break;
 			
 			case 2:
-				Question q = new Question();
-				System.out.println("Veuillez saisir l'intitulé de la question");
-				questionUser = new Scanner(System.in) ;
-				String intitule = questionUser.next();
-				q.setIntitule(intitule);
-				System.out.println("Veuillez saisir le nombre de réponses possibles");
-				List<String> ls = new ArrayList<>();
-				q.setPropositions(ls);
-				questionUser = new Scanner(System.in) ;
-				int nbReponses = questionUser.nextInt();
-					for (int j = nbReponses; j > 0 ; j--) {
-						int indexQ = 1;
-						System.out.println("Veuillez écrire la réponse " + indexQ);
-						questionUser = new Scanner(System.in) ;
-						String reponse = questionUser.next();
-						ls.add(reponse);
-						indexQ++;
-					}
-				System.out.println("Veuillez saisir la bonne réponse");
-				questionUser = new Scanner(System.in) ;
-				String bonneReponse = questionUser.next();
-				q.setBonneReponse(bonneReponse);
-				lq.add(q);
-
+				ajoutQuestion();
 				break;
 			
 			case 3:
-			
+				
+				listerQuestions();
+				supprimerQuestion();
 				break;
 			case 4:
 			
@@ -77,6 +51,47 @@ public class QuizzAdminConsoleApp {
 			System.out.println("4. Exécuter le quizz");
 			System.out.println("99. Sortir");
 		
+	}
+	
+	static void listerQuestions() {
+		int i = 1;
+		for (Question question : lq) {
+			System.out.println(i + ") " + question.getIntitule());
+			i++;
+		}
+	}
+	
+	static void ajoutQuestion() {
+		Question q = new Question();
+		System.out.println("Veuillez saisir l'intitulé de la question");
+		questionUser = new Scanner(System.in) ;
+		String intitule = questionUser.next();
+		q.setIntitule(intitule);
+		System.out.println("Veuillez saisir le nombre de réponses possibles");
+		List<String> ls = new ArrayList<>();
+		q.setPropositions(ls);
+		questionUser = new Scanner(System.in) ;
+		int nbReponses = questionUser.nextInt();
+			for (int j = nbReponses; j > 0 ; j--) {
+				int indexQ = 1;
+				System.out.println("Veuillez écrire la réponse " + indexQ);
+				questionUser = new Scanner(System.in) ;
+				String reponse = questionUser.next();
+				ls.add(reponse);
+				indexQ++;
+			}
+		System.out.println("Veuillez saisir la bonne réponse");
+		questionUser = new Scanner(System.in) ;
+		String bonneReponse = questionUser.next();
+		q.setBonneReponse(bonneReponse);
+		lq.add(q);
+	}
+	
+	static void supprimerQuestion() {
+		System.out.println("Veuillez choisir le numéro de la question que vous voulez supprimer");
+		questionUser = new Scanner(System.in) ;
+		int qSuppr = questionUser.nextInt();
+		lq.remove(qSuppr-1); 
 	}
 
 }
