@@ -3,8 +3,6 @@ package fr.diginamic.console;
 import java.util.Scanner;
 import fr.diginamic.controller.*;
 import fr.diginamic.data.QuestionMemDAO;
-import fr.diginamic.exception.StockageException;
-
 
 public class QuizzAdminConsoleApp {
 	

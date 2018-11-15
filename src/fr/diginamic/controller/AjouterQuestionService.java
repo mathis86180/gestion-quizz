@@ -14,20 +14,22 @@ public class AjouterQuestionService extends MenuService{
 
 	@Override
 	public void executeUC(Scanner scanner, QuestionDAO dao) throws StockageException {
+		String nbReponses = "";
 		Question question = new Question();
 		System.out.println("Veuillez saisir l'intitulé de la question");
-		//scanner = new Scanner(System.in);
 		String intitule = scanner.next();
 		question.setIntitule(intitule);
-		System.out.println("Veuillez saisir le nombre de réponses possibles");
+		do {
+			System.out.println("Veuillez saisir le nombre de réponses possibles");
+			nbReponses = scanner.next();
+		}while(!nbReponses.matches("[0-9]*"));
 		List<String> ls = new ArrayList<>();
 		question.setPropositions(ls);
-		int nbReponses = scanner.nextInt();
-		if (nbReponses < 2){
+		if (Integer.parseInt(nbReponses) < 2){
 			throw new AjouterQuestionException("Il faut plus de 2 réponses possibles !!");
 		}
 		int indexQuestion = 1;
-			for (int j = nbReponses; j > 0 ; j--) {
+			for (int j = Integer.parseInt(nbReponses); j > 0 ; j--) {
 				System.out.println("Veuillez écrire la réponse " + indexQuestion);
 				String reponse = scanner.next();
 				ls.add(reponse);

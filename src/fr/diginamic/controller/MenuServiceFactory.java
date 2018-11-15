@@ -19,7 +19,6 @@ public class MenuServiceFactory {
 			break;
 		
 		case 2:
-			//listerQuestionService.executeUC(scanner, dao);
 			try {
 				ajouterQuestionService.executeUC(scanner, dao);
 			} catch (StockageException e) {
@@ -41,6 +40,7 @@ public class MenuServiceFactory {
 			executerQuizzService.executeUC(scanner, dao);
 			break;
 		case 99:
+			System.out.println("Au revoir!");
 			System.exit(0);
 			break;
 		}
